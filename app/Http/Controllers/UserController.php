@@ -4,16 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
 
-    public function signup_get(){
-        return view('user.signup');
-    }
-
     public function login_get(){
         return view('user.login');
+    }
+
+    public function login_post(Request $request){
+        $credentials = $request->validate([
+            'email'=>'required|email',
+            'password'=>'required'
+        ]);
+        
+       if(Auth::attempt($credentials)){
+            return redirect()->route('welcome');
+       }else{
+
+        return back();
+       }
+    }
+
+    public function signup_get(){
+        return view('user.signup');
     }
 
     public function signup_post(Request $request){

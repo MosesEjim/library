@@ -1,8 +1,90 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+body{
+    background-color: #fafafa;
+}
+
+ul{
+    list-style-type: none;
+}
+
+ul li{
+    margin: 15px;
+}
+
+ul li a{
+    text-decoration: none;
+    color: rgb(43, 41, 41);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+}
+ nav{
+    display: flex;
+    width: 100%;  
+    justify-content: space-between;  
+ }
+ nav ul{
+    display: flex;  
+    justify-items: space-between;
+    float: right;
+ }
+
+ .brand{
+    float: left;
+    margin:10px;
+ }
+
+ .brand h3{
+    font-family: 'Quicksand', sans-serif;
+ }
+
+ 
+ .search input{
+    height: 50px;
+    margin:10px;
+    width: 500px;
+    border-radius: 25px;
+    background-color: rgb(234 238 239);
+    border: 0px;
+ }
+ .search input:focus{
+    background-color: rgb(234 238 239);
+    box-shadow: 0px;
+    border-collapse: collapse;
+ }
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
+}
+
+.book-container{
+    margin: 15px;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.book-col{
+    padding-top: 0px;
+    min-height: 200px;
+    max-height: 200px;
+    margin: 20px;
+    background-image: url(https://itknowledgezone.com/wp-content/uploads/2021/01/1_oeWLo61LItXIA5AY-Wmgiw-1.jpeg);
+}
+.book-title{
+    padding-top: 0px;
+    margin-top: 0px;
+    width: auto;
+    height: auto;
+    background-color: black;
+    color: white;
+    opacity: 0.5;
+}
+.checkout{
+    margin-top: 100px;
 }
 
 .input-group input{
