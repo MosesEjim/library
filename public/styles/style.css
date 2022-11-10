@@ -21,6 +21,7 @@ ul li a{
     font-family: 'Quicksand', sans-serif;
 }
  nav{
+    position: sticky;
     display: flex;
     width: 100%;  
     justify-content: space-between;  
@@ -58,7 +59,12 @@ ul li a{
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-content: center;
+    margin-top: 70px;
+    /* align-content: center; */
+}
+
+.edit-container{
+    align-items:stretch;
 }
 
 .book-container{
@@ -72,7 +78,13 @@ ul li a{
     min-height: 200px;
     max-height: 200px;
     margin: 20px;
-    background-image: url(https://itknowledgezone.com/wp-content/uploads/2021/01/1_oeWLo61LItXIA5AY-Wmgiw-1.jpeg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-image: url(https://itknowledgezone.com/wp-content/uploads/2021/01/1_oeWLo61LItXIA5AY-Wmgiw-1.jpeg); */
 }
 .book-title{
     padding-top: 0px;
@@ -83,8 +95,18 @@ ul li a{
     color: white;
     opacity: 0.5;
 }
-.checkout{
-    margin-top: 100px;
+
+.book-detail{
+display: flex;
+flex-direction: column;
+}
+
+.book-info{
+    
+    height: 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .input-group input{
@@ -106,9 +128,9 @@ ul li a{
 .card{
   margin: 0;
   position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  /* top: 50%; */
+  /* -ms-transform: translateY(-50%);
+  transform: translateY(-50%); */
 
   height: fit-content;
   width: 500px;

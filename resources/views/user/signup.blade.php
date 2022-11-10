@@ -1,77 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{URL::asset('styles/style.css')}}">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
+@extends('layout.app')
+
+@section('content')
+<div class="container">
        
-        <div class="card">
-            <h3>Signup</h3>
-            <form action="{{route('signup.post')}}" method="post">
-                @csrf
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                        @error('username')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                    <input type="text" 
-                        name="username" 
-                        placeholder="username" 
-                        value="{{old('username')}}"
-                        id="username"
-                        class="@error('username') is-invalid @enderror form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    @error('email')
-                    <div class="error">{{ $message }}</div>
+    <div class="card shadow-none bg-light">
+        <h3>Signup</h3>
+        <form action="{{route('signup.post')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                    @error('username')
+                        <div class="error">{{ $message }}</div>
                     @enderror
-                    <input type="email" 
-                    name="email" 
-                    placeholder="email"
-                    value="{{old('email')}}"
-                    id="email"
-                    class="@error('email') is-invalid @enderror form-control">
+                <input type="text" 
+                    name="username" 
+                    placeholder="username" 
+                    value="{{old('username')}}"
+                    id="username"
+                    class="@error('username') is-invalid @enderror form-control">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                @error('email')
+                <div class="error">{{ $message }}</div>
+                @enderror
+                <input type="email" 
+                name="email" 
+                placeholder="email"
+                value="{{old('email')}}"
+                id="email"
+                class="@error('email') is-invalid @enderror form-control">
 
-                   
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    @error('password')
-                    <div class="error">{{ $message }}</div>
-                    @enderror
-                    <input type="password" 
-                    name="password" 
-                    placeholder="password"
-                    value="{{old('password')}}"
-                    id="password"
-                    class="@error('password') is-invalid @enderror form-control">
+               
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                @error('password')
+                <div class="error">{{ $message }}</div>
+                @enderror
+                <input type="password" 
+                name="password" 
+                placeholder="password"
+                value="{{old('password')}}"
+                id="password"
+                class="@error('password') is-invalid @enderror form-control">
 
-                </div>
-                <div class="mb-3">
-                    <label for="avatar" class="form-label">Profile Picture</label>
-                    @error('avatar')
-                    <div class="error">{{ $message }}</div>
-                    @enderror
-                    <input type="file" 
-                    name="avatar" 
-                    id="avatar"
-                    class="@error('avatar') is-invalid @enderror form-control">
+            </div>
+            <div class="mb-3">
+                <label for="avatar" class="form-label">Profile Picture</label>
+                @error('avatar')
+                <div class="error">{{ $message }}</div>
+                @enderror
+                <input type="file" 
+                name="avatar" 
+                id="avatar"
+                class="@error('avatar') is-invalid @enderror form-control">
 
-                </div>
-                <div class="btn">
-                    <input type="submit" value="signup" class="btn btn-primary">
-                </div>
-            </form>
-            
-        </div>
+            </div>
+            <div class="btn">
+                <input type="submit" value="signup" class="btn btn-primary">
+            </div>
+        </form>
+        
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-</body>
-</html>
+</div>
+@endsection

@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
+            //since we only have two static roles, we can simply use an enum field to store roles
+            $table->enum('role', ['reader', 'librarian']);
+
             $table->rememberToken();
             $table->timestamps();
         });

@@ -20,9 +20,9 @@ class UserController extends Controller
         ]);
         
        if(Auth::attempt($credentials)){
-            return redirect()->route('welcome');
+            return redirect()->route('home');
        }else{
-
+        toastr()->errer("Login Failed, Please try again");
         return back();
        }
     }
@@ -34,7 +34,7 @@ class UserController extends Controller
     public function signup_post(Request $request){
         $request->validate([
             'username'=>'required|string',
-            'email'=>'required|email|exists:users',
+            'email'=>'required|email',
             'password'=>'required',
             'avatar'=>'required|mimes:jpg,png|max:2024'
         ]);
@@ -44,21 +44,26 @@ class UserController extends Controller
             $user->username = $request->username;
             $user->email = $request->password;
             $user->password = bcrypt($request->password);
-
+            $user->role = 'reader';
             //upload user avatar
-            $fileName = pathinfo($request->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME);
+            $file_name = pathinfo($request->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $request->file('avatar')->getClientOriginalExtension();
 
             $path = $request
                 ->file('avatar')
                 ->storeAs(
                     'public/files',
-                    str_replace(' ', '_', new Date('ymdhis').strtolower($fileName)).".".$extension
+                    str_replace(' ', '_', date('ymdhis').strtolower($file_name)).".".$extension
                 );
 
-            $user->avatar = explode('/'. $path)[2];
+            $user->avatar = explode('/', $path)[2];
             $user->save();
+            
+            toastr()->success('Account Created Successfully');
+            return redirect()->route('home');
         }catch(\Exception $e){
+          
+            toastr()->error('Failed To Create Account');
             return back();
         }
     }
@@ -103,6 +108,11 @@ class UserController extends Controller
             return back();
         }
         
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('home');
     }
 
 

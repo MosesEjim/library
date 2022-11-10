@@ -15,6 +15,23 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('isbn');
+            $table->string('revision_number');
+            $table->date('published_date');
+            $table->string('publisher');
+            $table->string('author');
+            $table->date('date_added_to_library');
+            $table->string('genre');
+            $table->string('cover_photo');
+
+            $table->unsignedBigInteger('borrower_id')->nullable();
+            $table->foreign('borrower_id')->references('id')->on('users');
+
+            $table->boolean('checked_out')->default(0);
+
+            $table->date('checkout_date')->nullable();
+
             $table->timestamps();
         });
     }
