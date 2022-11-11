@@ -41,6 +41,10 @@ ul li a{
     font-family: 'Quicksand', sans-serif;
  }
 
+ .brand h3 a{
+    text-decoration: none;
+    color: black;
+ }
  
  .search input{
     height: 50px;
@@ -141,4 +145,16 @@ flex-direction: column;
 .error{
     color: red;
     font-size: small;
+}
+
+.nav-btn{
+    color: white;
+    background-color: rgb(250, 157, 157);
+    border: 1px solid rgb(250, 157, 157);
+    border-radius: 10px;
+
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+
 }

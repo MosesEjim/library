@@ -17,11 +17,11 @@
                @if(Auth::check())
                     @if(Auth::user()->role ==='reader')
                         <div>
-                            <form action="{{route('book.checkout', $book->id)}}" method="post" id="checkout">
+                            <form action="{{route('book.checkin', $book->id)}}" method="post" id="checkin">
                                 @csrf
                                 @method("PUT")
                             </form>
-                            <input type="button" value="checkout" class="btn btn-success" onclick="document.getElementById('checkout').submit()">
+                            <input type="button" value="checkin" class="btn btn-danger" onclick="document.getElementById('checkin').submit()">
                         </div>
                     @else
                      <div>

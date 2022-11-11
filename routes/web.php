@@ -17,6 +17,8 @@ Route::get('/', [BookController::class, 'index'])->name('home');
 
 
 
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
 Route::get('/login', [UserController::class, 'login_get'])->name('login.get');
 Route::post('/login', [UserController::class, 'login_post'])->name('login.post');
 Route::get('/signup', [UserController::class, 'signup_get'])->name('signup.get');
@@ -27,4 +29,10 @@ Route::group(['prefix'=>'books'], function(){
     Route::post('/upload', [BookController::class, 'store'])->name('book.store');
     Route::get('/edit/{id}', [BookController::class, 'edit'])->name('book.edit');
     Route::put('/edit/{id}', [BookController::class, 'update'])->name('book.update');
+});
+
+Route::group([], function(){
+    Route::put('/checkout/{id}', [BookController::class, 'check_out'])->name('book.checkout');
+    Route::put('/checkin/{id}', [BookController::class, 'check_in'])->name('book.checkin');
+    Route::get('/borrowed-books', [BookController::class, 'user_books'])->name('book.borrowed');
 });

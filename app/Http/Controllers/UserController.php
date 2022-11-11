@@ -22,7 +22,7 @@ class UserController extends Controller
        if(Auth::attempt($credentials)){
             return redirect()->route('home');
        }else{
-        toastr()->errer("Login Failed, Please try again");
+        toastr()->error("Login Failed, Please try again");
         return back();
        }
     }
@@ -42,7 +42,7 @@ class UserController extends Controller
         try{
             $user = new User();
             $user->username = $request->username;
-            $user->email = $request->password;
+            $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $user->role = 'reader';
             //upload user avatar
@@ -60,7 +60,7 @@ class UserController extends Controller
             $user->save();
             
             toastr()->success('Account Created Successfully');
-            return redirect()->route('home');
+            return redirect()->route('login.get');
         }catch(\Exception $e){
           
             toastr()->error('Failed To Create Account');

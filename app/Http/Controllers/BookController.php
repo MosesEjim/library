@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 
 class BookController extends Controller
 { 
     public function index(){
-        $books = Book::all();
+        $books = Book::where('checked_out', false)
+                        ->get();
         return view('welcome')
             ->with('books', $books);
     }
@@ -59,7 +61,7 @@ class BookController extends Controller
             toastr()->success("Book uploaded successfully");
             return back();
         }catch(\Exception $e){
-            dd($e);
+            
             toastr()->error("Failed to upload book");
             return back();
         }
@@ -126,5 +128,42 @@ class BookController extends Controller
             toastr()->error("Failed To Update Book");
             return back();
         }
+    }
+    // shows all books currently borrowed by a user
+    public function user_books(){
+        $user_books = Auth::user()->borrowed_books;
+        return view('book.user-books')
+                ->with('books', $user_books);
+    }
+
+    public function check_out($id){
+        try{
+            $book = Book::find($id);
+            $book->checked_out = true;
+            $book->borrower_id = Auth::id();
+            $book->checkout_date = date('Y-d-m');
+            $book->update();
+            toastr()->success("Check Out Successful.");
+            return back();
+        }catch(\Exception){
+            toastr()->error("failed to Check Out.");
+            return back();
+        }
+        
+    }
+    public function check_in($id){
+        try{
+            $book = Book::find($id);
+            $book->checked_out = false;
+            $book->borrower_id = null;
+            $book->checkout_date =null;
+            $book->update();
+            toastr()->success("Check In Successful.");
+            return back();
+        }catch(\Exception){
+            toastr()->error("failed to Check In.");
+            return back();
+        }
+        
     }
 }
