@@ -18,12 +18,14 @@ class BookSearch extends Component
                 ->with('books', $books);
         }
 
-        $books = Book::where('checked_out', 0)
-                        ->where('title', 'like', '%'.$this->search.'%')
+        $books = Book::where('title', 'like', '%'.$this->search.'%')
                         ->orWhere('isbn', 'like', '%'.$this->search.'%')
                         ->orWhere('publisher', 'like', '%'.$this->search.'%')
                         ->orWhere('date_added_to_library', 'like', '%'.$this->search.'%')
-                        ->get();
+                        ->get()
+                        ->filter(function($item){
+                            return $item->checked_out == false;
+                        });
                         
         return view('livewire.book-search')
                 ->with('books', $books);

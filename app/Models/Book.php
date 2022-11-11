@@ -12,4 +12,6 @@ class Book extends Model
     public function borrower(){
         return $this->hasOne('App\Models\User', 'id', 'borrower_id');
     }
+
+    
 }
