@@ -17,14 +17,14 @@ It's quite easy getting started with this application. Follow the steps below to
 
 For notifications to work, you need to supply the following ```.env``` variables
 
--```MAIL_MAILER=smtp```
--```MAIL_HOST=smtp.gmail.com```
--```MAIL_PORT=465```
--```MAIL_USERNAME=```
--```MAIL_PASSWORD=```
--```MAIL_ENCRYPTION=ssl```
--```MAIL_FROM_ADDRESS=```
--```MAIL_FROM_NAME=```
+- ```MAIL_MAILER=smtp```
+- ```MAIL_HOST=smtp.gmail.com```
+- ```MAIL_PORT=465```
+- ```MAIL_USERNAME=```
+- ```MAIL_PASSWORD=```
+- ```MAIL_ENCRYPTION=ssl```
+- ```MAIL_FROM_ADDRESS=```
+- ```MAIL_FROM_NAME=```
 
 - when you have supplied all the necessary variables, run ``` php artisan schedule:work``` to monitor and send email notifications
 
