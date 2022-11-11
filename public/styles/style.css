@@ -191,3 +191,10 @@ flex-direction: column;
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
