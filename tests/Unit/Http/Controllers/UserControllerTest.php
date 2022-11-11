@@ -21,6 +21,6 @@ class UserControllerTest extends TestCase
     }
 
     public function test_that_user_is_created(){
-        $user = User::factory()->create();
+        // $user = User::factory()->create();
     }
 }
