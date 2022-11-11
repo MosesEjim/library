@@ -5,12 +5,13 @@
 It's quite easy getting started with this application. Follow the steps below to get started:
 
 - Clone the project by running ```git clone [project_git_url]```
-- After cloning the project, run ```composer install``` to install all depencies
+- After cloning the project, run ```composer install``` to install all dependencies
 - Next, you would need to configure some environmental variables.
 - Open your ```.env``` file and supply a database name and password you have created
 - After setting up the database configurations, run ```php artisan migrate --seed``` to create all database tables and seed default Librarian
 
 - after seeding the application, a default admin user is created with email: ```librarian@gmail.com``` and password: ```secret```
+- Run ```php artisan serve``` to start the application
 
 
 ## Setting Up Notificaions
