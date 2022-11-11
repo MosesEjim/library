@@ -15,7 +15,12 @@
         <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
         <li><button onclick="document.getElementById('logout-form').submit()" class="nav-btn">Logout</button></li>
        
-        <li><img src="/storage/files/{{Auth::user()->avatar}}" style="border-radius: 40%" height="40px", width="50px"></li>
+        <li>
+            @if(Auth::user()->avatar != null)
+            <img src="/storage/files/{{Auth::user()->avatar}}" style="border-radius: 40%" height="40px", width="50px"></li>
+            @else
+            <img src="{{asset('images/user.png')}}" style="border-radius: 40%" height="40px", width="50px"></li>
+            @endif
         @endif
 
         @if(!Auth::check())

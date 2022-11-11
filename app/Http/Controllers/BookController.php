@@ -114,7 +114,7 @@ class BookController extends Controller
                     'public/files',
                     str_replace(' ', '_', date('ymdhis').strtolower($filename)).".".$extension
                 );
-
+            //get the file name
             $book->cover_photo = explode('/', $path)[2];
                 
             }
