@@ -9,8 +9,10 @@ It's quite easy getting started with this application. Follow the steps below to
 - Next, you would need to configure some environmental variables.
 - Open your ```.env``` file and supply a database name and password you have created
 - After setting up the database configurations, run ```php artisan migrate --seed``` to create all database tables and seed default Librarian
+- Seeding will also create 10 books without image, the admin can edit them and add images
 
 - after seeding the application, a default admin user is created with email: ```librarian@gmail.com``` and password: ```secret```
+- Run '''php artisan storage:link``` to link your images and make them visible
 - Run ```php artisan serve``` to start the application
 
 
