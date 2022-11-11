@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
                 ->get()
                 ->filter(function($book){
                             // checking if book is overdue with a global helper function
-                            remaining_time($book) < 0;
+                            return remaining_time($book) < 0;
                 });
      }
 
@@ -33,15 +33,16 @@ class Kernel extends ConsoleKernel
         ->get()
         ->filter(function($book){
                     // check if we have two days left
-                    remaining_time($book) == 2;
+                 return  remaining_time($book) == 2;
         });
      }
 
     protected function schedule(Schedule $schedule)
     {
-        $librarian_email = User::where('role', 'librarian')->first();
-        $schedule->call(function () {
-            $overdue_books = get_overdue_books();
+        $librarian_email = User::where('role', 'librarian')->first()->email;
+        $schedule->call(function () use($librarian_email){
+            $overdue_books = $this->get_overdue_books();
+         
             foreach($overdue_books as $book){
                 Mail::to($librarian_email)->send(new NotifyLibrarian($book));
             }
@@ -49,7 +50,7 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
         $schedule->call(function () {
-            $soon_overdue_books = get_soon_to_be_overdue_books();
+            $soon_overdue_books = $this->get_soon_to_be_overdue_books();
             foreach($soon_overdue_books as $book){
                 Mail::to($book->borrower->email)->send(new NotifyReader($book));
             }

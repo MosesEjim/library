@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
 
 class NotifyLibrarian extends Mailable
@@ -32,7 +33,7 @@ class NotifyLibrarian extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address('librarian@booksville.com', 'BooksVille'),
+            from: new Address('speaktoejim@gmail.com','BooksVille'),
             subject: 'Notify Librarian',
         );
     }
