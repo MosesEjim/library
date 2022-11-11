@@ -7,9 +7,11 @@
     </div>
     <ul>
         @if(Auth::check())
-        <li><a href="{{route('book.borrowed')}}">Borrowed books</a></li>
         @if(Auth::user()->role === "librarian")
+        <li><a href="{{route('book.all.borrowed')}}">All Borrowed books</a></li>
         <li><a href="{{route('book.create')}}">Upload books</a></li>
+        @else
+        <li><a href="{{route('book.borrowed')}}">Borrowed books</a></li>
         @endif
         <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
         <li><button onclick="document.getElementById('logout-form').submit()" class="nav-btn">Logout</button></li>

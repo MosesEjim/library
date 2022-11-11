@@ -59,7 +59,7 @@ class BookController extends Controller
             
             $book->save();
             toastr()->success("Book uploaded successfully");
-            return back();
+            return redirect()->route('home');
         }catch(\Exception $e){
             
             toastr()->error("Failed to upload book");
@@ -151,6 +151,7 @@ class BookController extends Controller
         }
         
     }
+    
     public function check_in($id){
         try{
             $book = Book::find($id);
@@ -165,5 +166,11 @@ class BookController extends Controller
             return back();
         }
         
+    }
+
+    public function all_borrowed_books(){
+        $borrowed_books = Book::where('checked_out', true)->get();
+        return view('book.all-borrowed-books')
+                ->with('books', $borrowed_books);
     }
 }

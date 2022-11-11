@@ -10,6 +10,6 @@ class Book extends Model
     use HasFactory;
 
     public function borrower(){
-        return $this->hasOne('App\Models\User');
+        return $this->hasOne('App\Models\User', 'id', 'borrower_id');
     }
 }
